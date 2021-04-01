@@ -1,0 +1,77 @@
+<div class="contact-list pt-3">
+  <v-text-field
+    v-model="searchTerm"
+    :placeholder="$t('contacts.searchPlaceholder')"
+    @keyup.native="searchContactByName()"
+    :disabled="rosterListByGroup.length === 0"
+    outlined
+    prepend-inner-icon="mdi-account-search"
+  ></v-text-field>
+
+  <span
+    class="text-center text-danger text-bold ml2"
+    v-if="searchedRosterList.length === 0
+        && searchTerm.length < 3
+        && searchTerm.length !== 0"
+  >
+    {{ $t('contacts.min3Characters') }}
+  </span>
+  <span
+    class="text-center text-danger text-bold ml2"
+    v-if="searchedRosterList.length === 0 && searchTerm.length > 2"
+  >
+    {{ $t('contacts.noContactFound') }}
+    <img src="svg-emoji/pensive-emoji.svg" width="18" height="18" />
+  </span>
+
+  <span
+    class="text-center text-primary text-bold ml2"
+    v-if="isLoadingRoster && searchedRosterList.length === 0"
+  >
+    {{ $t('contacts.loadingContacts') }}
+  </span>
+  <span
+    class="text-center text-primary text-bold ml2"
+    v-if="isLoadingRoster === false && searchedRosterList.length === 0"
+  >
+    {{ $t('contacts.noAvailableContacts') }}
+  </span>
+
+  <v-card class="contact-list-card">
+    <v-list>
+      <v-list-item-group>
+        <template v-for="(contact, key) in searchedRosterList">
+          <v-list-item
+            @click.native="openConversation(contact)"
+            :key="contact.name"
+          >
+            <v-list-item-avatar>
+              <v-img
+                :alt="`${contact.name} avatar`"
+                src="https://cdn.vuetifyjs.com/images/lists/1.jpg"
+                :class="getPresenceBorderColor(contact.presence.id)"
+              ></v-img>
+            </v-list-item-avatar>
+
+            <v-list-item-content>
+              <v-list-item-title
+                class="title"
+                v-text="contact.name"
+              ></v-list-item-title>
+              <v-list-item-subtitle
+                v-html="contact.group === 'Others' ? $t('contacts.groupOthers') : contact.group"
+              ></v-list-item-subtitle>
+            </v-list-item-content>
+
+            <v-list-item-action>
+              <v-list-item-action-text
+                v-text="'11:15 AM'"
+              ></v-list-item-action-text>
+            </v-list-item-action>
+          </v-list-item>
+          <v-divider inset></v-divider>
+        </template>
+      </v-list-item-group>
+    </v-list>
+  </v-card>
+</div>

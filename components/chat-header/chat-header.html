@@ -1,0 +1,24 @@
+<div class="chat-header">
+  <v-card elevation="0" v-if="authUser">
+    <v-toolbar v-if="!isDisconnected" elevation="0">
+      <v-toolbar-title>Message</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn class="mx-2" fab dark x-small color="#1d518b">
+        <v-icon dark>mdi-account</v-icon>
+      </v-btn>
+    </v-toolbar>
+    <v-divider></v-divider>
+
+    <div v-if="isDisconnected" class="text-center">
+      <v-alert dense outlined type="error" :title="disconnectedMessage">
+        {{disconnectedMessage}}
+      </v-alert>
+      <v-btn class="ma-2" outlined color="#1d518b" @click="goToLogin()">
+        <v-icon left>
+          mdi-key
+        </v-icon>
+        {{ $t('profile.reLoginButton') }}
+      </v-btn>
+    </div>
+  </v-card>
+</div>

@@ -1,0 +1,15 @@
+.cool-textarea {
+  min-height: 30px;
+  max-height: 150px;
+  background-color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  white-space: pre-wrap;
+  border-radius: 30px;
+}
+
+.cool-textarea:focus {
+  outline: none !important;
+}

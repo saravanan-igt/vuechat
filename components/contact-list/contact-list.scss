@@ -1,0 +1,18 @@
+.height-fix-contact {
+  height: 65px !important;
+}
+
+.contact-list {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+.contact-list-card {
+  margin-top: -20px;
+}
+.v-application .contact-list {
+  .title {
+    letter-spacing: normal !important;
+    font-weight: 600;
+    font-size: 1rem !important;
+  }
+}
