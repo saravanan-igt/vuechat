@@ -42,6 +42,27 @@
   background-color: #e2edfa;
   margin-bottom: 10px;
   font-weight: 600;
+  position: relative;
+}
+
+.message-style:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-width: 8px;
+  border-style: solid;
+  top: 8px;
+}
+
+.message-style.float-right:after {
+  border-color: transparent transparent transparent #e2edfa;
+  right: -16px;
+}
+
+.message-style.float-left:after {
+  border-color: transparent #e2edfa transparent transparent;
+  left: -16px;
 }
 
 .max-size-header {
@@ -60,6 +81,7 @@
   border-radius: 25px;
   padding: 10px;
 }
+
 .chat-bubble-timeStamp {
   line-height: normal;
 }
